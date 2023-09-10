@@ -1,15 +1,50 @@
-import React from 'react';
+import React, { lazy,Suspense, useEffect, useState } from "react";
 import ReactDOM from 'react-dom/client';
+import { createBrowserRouter,RouterProvider,Outlet } from "react-router-dom";
 import './index.css';
-import App from './App';
+import AppLayout from './App';
+import Body from './Body';
+import About from './utils/About';
+import Contact from './utils/Contacts';
+import Error from "./Error";
+import RestaurantMenu from "./RestaurantMenu";
 import reportWebVitals from './reportWebVitals';
+import Grocary from "./utils/Grocary";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+//const Grocary = lazy(() => import("./src/utils/Grocary"));
+
+const AppRouter = createBrowserRouter([
+  {
+      
+      path : "/",
+      element : <AppLayout/>,
+      children :[
+              {
+      path : "/",
+      element : <Body/>
+  },
+          {
+      path : "/About",
+      element : <About/>
+  },
+  {
+      path : "/Contact",
+      element : <Contact/>
+  },
+  {
+      path : "/grocary",
+      element : <Grocary/>
+  },
+  {
+      path : "/restaurants/:resId",
+      element : <RestaurantMenu/>
+  }
+      ],
+      errorElement:<Error/>
+  }
+]);
+const Root = ReactDOM.createRoot(document.getElementById("root"));
+Root.render(<RouterProvider router={AppRouter}/>);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
