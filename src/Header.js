@@ -3,6 +3,8 @@ import { useState,useContext } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "./utils/useOnlineStatus";
 import UserContext from "./utils/UserContext";
+import {useSelector} from "react-redux";
+
 
 const Header = () => {
 //--deep dive into useState(react-hook) concepts
@@ -10,11 +12,13 @@ const [btnswap,setBtnSwap] = useState("login");
 const onlineStatus = useOnlineStatus();
 
 const {loginUser} = useContext(UserContext);
-console.log(loginUser);
+//console.log(loginUser);
 //context API ------> useContext and create context
 
-// const {logginUser} = User;
 
+//subscribing the store by using selector
+const cartItems = useSelector((store)=> store.cart.items);
+console.log(cartItems);
 
     return(
         <div className="flex justify-between bg-pink-100 shadow-lg">
@@ -38,7 +42,8 @@ console.log(loginUser);
                     <li className="px-4 hover:shadow-md">
                     <Link to ="/grocary">Grocary</Link>
                     </li >
-                    <li className="px-4 hover:shadow-md">Cart</li>
+                    <li className="px-4 hover:shadow-md font-bold text-xl"><Link to ="/cart">Cart-({cartItems.length})</Link>
+                    </li>
                     <li className="bg-red-200 p-1 rounded-lg">
                     <button onClick={() => 
                         btnswap === "login" ? setBtnSwap("logout") : setBtnSwap("login")}>{btnswap}</button>

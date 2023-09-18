@@ -9,8 +9,8 @@
         //import RestaurantMenu from "./src/RestaurantMenu";
         import UserContext from "./utils/UserContext";
         //import Grocary from "./src/utils/Grocary";
-        
-
+        import {Provider} from "react-redux";
+        import appStore from "./utils/appStore";
 
         const AppLayout = () => {
 
@@ -25,13 +25,14 @@
             return(
 
                 
-
-                <UserContext.Provider value={{loginUser:userInfo,setUserInfo}}>
-                    <div className="app">
-                        <Header/>
-                        <Outlet/>
-                    </div>   
-                </UserContext.Provider>  
+                <Provider store={appStore}>
+                    <UserContext.Provider value={{loginUser:userInfo,setUserInfo}}>
+                        <div className="app">
+                            <Header/>
+                            <Outlet/>
+                        </div>   
+                    </UserContext.Provider>  
+                </Provider>
             );
         };
 
