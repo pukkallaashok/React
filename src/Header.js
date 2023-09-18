@@ -40,7 +40,7 @@ console.log(cartItems);
                     <Link to ="/Contact">Contact US</Link>
                     </li>
                     <li className="px-4 hover:shadow-md">
-                    <Link to ="/grocary">Grocary</Link>
+                    <Link to ="/grocary">Grocary</Link> 
                     </li >
                     <li className="px-4 hover:shadow-md font-bold text-xl"><Link to ="/cart">Cart-({cartItems.length})</Link>
                     </li>
