@@ -11,6 +11,7 @@ import RestaurantMenu from "./RestaurantMenu";
 import reportWebVitals from './reportWebVitals';
 import Grocary from "./utils/Grocary";
 import CartStore from "./CartStore";
+import LoginPage from "./LoginPage";
 
 //const Grocary = lazy(() => import("./src/utils/Grocary"));
 
@@ -44,6 +45,10 @@ const AppRouter = createBrowserRouter([
     path : "/cart",
     element : <CartStore/>
     },
+    {
+        path : "/Login",
+        element : <LoginPage/>
+    }
       ],
       errorElement:<Error/>
   }

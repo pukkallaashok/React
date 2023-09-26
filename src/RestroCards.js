@@ -5,7 +5,7 @@ const RestroCards = (props) =>{
     const {resData} = props;
     const {cloudinaryImageId,name,avgRating,deliveryTime,cuisines,costForTwo}=resData;
     return(
-        <div className="restro-cards bg-gray-200 hover:bg-gray-300 m-4 p-4 w-[270px] h-[400px] rounded-lg">
+        <div className="restro-cards hover:scale-90 transition duration-500 m-4 p-4 w-[270px] h-[400px] rounded-lg">
             <img className="res-img w-[100%] h-44 rounded-md" alt="res-img" 
             src={CDN_URL+cloudinaryImageId}/>
             <h3 className="font-bold py-1">{name}</h3>
@@ -20,7 +20,7 @@ export const withMessage = (RestroCards) => {
     return(props)=>{
         return(
             <div>
-                <label className="m-2 p-2 bg-black text-white absolute">Promoted</label>
+                <label className="m-2 p-2  text-white absolute"></label>
                 <RestroCards {...props}/>
             </div>
         );

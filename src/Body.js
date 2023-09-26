@@ -19,13 +19,35 @@ const Body = () => {
 
     useEffect(()=>{
         fetchData();
+        saveUser();
     },[]);
+    const saveUser = async() =>{
+        const user= {
+            firstName : "Ashok",
+            lastName  : "Kumar",
+            eMail     : "meherashok98@gmail.com",
+            address   : "Nirvana men's PG"
+        }
+        const userData = await fetch("https://foodapp-4872f-default-rtdb.firebaseio.com/user.json",
+        {
+            method:"POST",
+            headers:{
+                "Content-Type": "application/json"
+            },
+            body:
+                JSON.stringify({
+                    user
+                }),
+        }
+        );
+    }
     const fetchData = async () =>{
-        const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.4400802&lng=78.3489168&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+        //const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.4400802&lng=78.3489168&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+        const data = await fetch("https://foodapp-4872f-default-rtdb.firebaseio.com/data.json");
         const json = await data.json();
         //Optional chaining
-        setListofRestroCards(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-        setFilteredRestro(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setListofRestroCards(json?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setFilteredRestro(json?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     };
 
     const onlineStatus = useOnlineStatus();

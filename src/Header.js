@@ -21,12 +21,12 @@ const cartItems = useSelector((store)=> store.cart.items);
 console.log(cartItems);
 
     return(
-        <div className="flex justify-between bg-pink-100 shadow-lg">
+        <div className="flex justify-between bg-stone-100 shadow-lg">
             <div className="logo-component">
                 <img className="w-36 rounded-t-full rounded-b-full py-2" src={LOGO_URL}/>
             </div>
             <div className="">
-                <ul className="flex p-5 m-5 justify-between text-center">
+                <ul className="flex p-5 m-5 justify-between text-center font-bold">
                     <li className="px-4 hover:shadow-md">
                         Status : {onlineStatus ? "online🟢" : "offline🔴"}
                     </li>
@@ -44,11 +44,13 @@ console.log(cartItems);
                     </li >
                     <li className="px-4 hover:shadow-md font-bold text-xl"><Link to ="/cart">Cart-({cartItems.length})</Link>
                     </li>
-                    <li className="bg-red-200 p-1 rounded-lg">
+                    <li className=" p-1 rounded-lg w-14 h-8">
                     <button onClick={() => 
                         btnswap === "login" ? setBtnSwap("logout") : setBtnSwap("login")}>{btnswap}</button>
                     </li>
-                    <li className="px-4 hover:shadow-md">{loginUser}</li>
+                    <li className="text-lg font-bold px-2 mx-2">
+                        <Link to = "/Login" > Sign-In</Link>
+                    </li>
                 </ul>
             </div>   
         </div>
